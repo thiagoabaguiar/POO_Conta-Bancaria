@@ -117,47 +117,58 @@ public class ContaBancaria {
     }
     
     // métodos
-    public void abrirConta(String tipoConta) {
+    public String abrirConta(int numero, String tipo, String titular) {
 
-        this.contaAberta = true;
-
+        String retorno = new String();
+        
+        this.setNumConta(numero);
+        this.setTipoConta(tipo);
+        this.setTitularConta(titular);
+        this.setContaAberta(true);
+        this.creditoInicial(tipo);
+        
+        retorno = "Conta aberta com sucesso! \n" +
+                "Conta Nro: " + this.getNumConta() + "\n" +
+                "Tipo: " + this.getTipoConta() + "\n" +
+                "Titular: " + this.getTitularConta();
+        
+        return retorno;
+        
     }
 
     public void creditoInicial(String tipoConta) {
 
         if (tipoConta.equals("CC")) {
 
-            this.saldoConta = 50.00f;
+            this.setSaldoConta(50.00f);
 
         }
 
         if (tipoConta.equals("CP")) {
 
-            this.saldoConta = 150.00f;
+            this.setSaldoConta(150.00f);
 
-        }
+        }      
 
     }
 
     public String fecharConta() {
 
-        float saldo = this.saldoConta;
-
         String retorno = new String();
 
-        if (saldo < 0) {
+        if (this.getSaldoConta() < 0) {
 
             retorno = "Saldo negativo. Cliente em débito. Impossível fechar conta.";
 
         }
 
-        if (saldo > 0) {
+        if (this.getSaldoConta() > 0) {
 
             retorno = "Saldo positivo. Necessário sacar saldo. Impossível fechar conta.";
 
         }
 
-        if (saldo == 0) {
+        if (this.getSaldoConta() == 0) {
 
             this.contaAberta = false;
 
@@ -196,15 +207,11 @@ public class ContaBancaria {
 
         String retorno = new String();
 
-        boolean contaEstaAberta = this.contaAberta;
+        if (this.isContaAberta()) {
 
-        if (contaEstaAberta) {
+            if (this.getSaldoConta() >= valorSaque) {
 
-            float saldoAtualConta = this.saldoConta;
-
-            if (saldoAtualConta >= valorSaque) {
-
-                this.saldoConta -= valorSaque;
+                this.setSaldoConta(this.getSaldoConta() - valorSaque);                
                 retorno = "Saque realizado com sucesso.";
 
             } else {
@@ -227,20 +234,20 @@ public class ContaBancaria {
         
         String retorno = new String();
 
-        if (this.contaAberta) {
+        if (this.isContaAberta()) {
 
-            if (this.saldoConta >= this.valorMensalCC || this.saldoConta >= this.valorMensalCP) {
+            if (this.getSaldoConta() >= this.getValorMensalCC() || this.getSaldoConta() >= this.getValorMensalCP()) {
 
                 switch (tipoConta) {
 
                     case "CC":
-                        this.saldoConta -= this.valorMensalCC;
-                        retorno = "Mensalidade debitada - Valor R$ " + this.valorMensalCC;
+                        this.setSaldoConta(this.getSaldoConta() - this.getValorMensalCC());
+                        retorno = "Mensalidade debitada - Valor R$ " + this.getValorMensalCC();
                         break;
 
                     case "CP":
-                        this.saldoConta -= this.valorMensalCP;
-                        retorno = "Mensalidade debitada - Valor R$ " + this.valorMensalCP;
+                        this.setSaldoConta(this.getSaldoConta() - this.getValorMensalCP());
+                        retorno = "Mensalidade debitada - Valor R$ " + this.getValorMensalCP();
                         break;
 
                     default:

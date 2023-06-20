@@ -176,16 +176,11 @@ public class telaInicial extends javax.swing.JFrame {
     private void btnAbrirContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirContaActionPerformed
 
         int numConta = Integer.parseInt(txtNumeroConta.getText());
-
         String tipoConta = cmbTipoConta.getSelectedItem().toString();
-
         String titularConta = txtTitular.getText();
-
-        conta.setNumConta(numConta);
-        conta.setTipoConta(tipoConta);
-        conta.setTitularConta(titularConta);
-        conta.setContaAberta(true); // muda o status para aberta
-        conta.creditoInicial(tipoConta); // credita de acordo com o tipo da conta
+        
+        String retorno = conta.abrirConta(numConta, tipoConta, titularConta);
+        System.out.println(retorno);
 
         float saldoAtual = conta.getSaldoConta();
         lblSaldoAtual.setText(Float.toString(saldoAtual));

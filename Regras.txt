@@ -1,0 +1,28 @@
+- dois tipos de conta: corrente e poupança
+- objeto "contaBanco"
+	+ numConta
+	# tipoConta
+	- nomeDono
+	- saldo
+	- status (aberta/fechada)
+
+	+ abrirConta()
+	+ fecharConta()
+	+ depositar()
+	+ sacar()
+	+ pagarMensal()
+
+- regras:
+	- tipo da conta só pode ser CC ou CP OK --> colocar no "front" o setTipoConta() para validar o tipo (CC/CP)
+
+	- abrirConta() muda o status para true (se a conta não está aberta, o atributo é falso) --> OK
+	- abrirConta() pergunta o tipoConta; se a conta for CC, ganha 50 reais; se for CP, ganha 150 reais --> OK
+	- fecharConta() não permite se o saldo for negativo (conta negativa), ou se houver $ na conta (saldo existente) --> OK
+	- depositar() só aceita se a conta está status aberta --> OK
+	- sacar() só aceita se a conta está status aberta e tem saldo suficiente (não considerar cheque especial) --> OK
+	- no método construtor, o status (aberto) é falso e o saldo é zero --> OK
+	- pagarMensal() só aceita se a conta está aberta e tem saldo suficiente; se for CC, pagará 12 reais, se for CP pagará 20 reais --> OK
+
+- atributos OK
+- getters/setters OK
+- construtor OK
