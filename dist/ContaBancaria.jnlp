@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ContaBancaria.jnlp">
+  <information>
+    <title>ContaBancaria</title>
+    <vendor>CS384038</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ContaBancaria.jar" size="10130" download="eager" />
+  </resources>
+  <application-desc main-class="classes.telaInicial"  name="ContaBancaria" >
+  </application-desc>
+  <update check="always"/>
+</jnlp>
