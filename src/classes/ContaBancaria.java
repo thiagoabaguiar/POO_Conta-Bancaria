@@ -67,9 +67,9 @@ public class ContaBancaria {
     }
 
     // setters
-    public void setContaAberta(boolean contaAberta) {
+    public void setContaAberta(boolean status) {
 
-        this.contaAberta = contaAberta;
+        this.contaAberta = status;
 
     }
 
@@ -170,7 +170,7 @@ public class ContaBancaria {
 
         if (this.getSaldoConta() == 0) {
 
-            this.contaAberta = false;
+            this.isContaAberta();
 
             retorno = "Conta fechada com sucesso!";
 
@@ -184,13 +184,9 @@ public class ContaBancaria {
 
         String retorno = new String();
 
-        boolean contaEstaAberta = this.contaAberta;
-        float saldo = this.saldoConta;
+        if (this.isContaAberta()) {
 
-        if (contaEstaAberta) {
-
-            saldo += valorDeposito;
-            this.saldoConta = saldo;
+            this.setSaldoConta(this.getSaldoConta() - valorDeposito);
             retorno = "Depósito efetuado com sucesso!";
 
         } else {
